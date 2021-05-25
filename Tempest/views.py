@@ -29,15 +29,15 @@ def info(request):
     datos = requests.get(respuesta["datos"]).json()
 
     # Todos los datos
-    # print(datos)
+    print(datos)
 
     # Prediccion
-    # print(datos[0]["prediccion"]["dia"][0])
+    print(datos[0]["prediccion"]["dia"][0])
 
-    # Fecha de la prediccion - Cambiar el 1 para vanzar de dia
-    #print(datos[0]["prediccion"]["dia"][1]["fecha"])
+    #Fecha de la prediccion - Cambiar el 1 para vanzar de dia
+    print(datos[0]["prediccion"]["dia"][3]["fecha"])
 
-    #print(datos[0]["prediccion"]["dia"][1]["probPrecipitacion"])
+    print(datos[0]["prediccion"]["dia"][1]["probPrecipitacion"])
 
 
 
@@ -45,4 +45,4 @@ def info(request):
                    'dato2': datos[0]["prediccion"]["dia"][1]["probPrecipitacion"]}
     return render(request, 'info.html', context=diccionario)
 
-    #return render(request, 'info.html')
+    return render(request, 'info.html')
