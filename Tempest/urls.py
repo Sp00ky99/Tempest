@@ -14,17 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+
 from django.urls import path
-from Tempest.views import map,list,about,index, info
+from . import views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
-    #path('', views.map, name='map'),
-    path('index/', index),
-    path('map/', map),
-    path('list/', list),
-    path('about/', about),
-    path('info/', info),
-]
+    path('',views.index, name='index'),
+    path('index',views.index, name='index'),
+    path('map',views.map, name='map'),
+    path('list',views.list, name='list'),
+    path('about',views.about, name='about'),
+    path('info',views.info, name='info'),
 
+
+]
