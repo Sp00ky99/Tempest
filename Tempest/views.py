@@ -9,18 +9,27 @@ def map(request):
     return render(request, 'map.html')
 
 def list(request):
-    return render(request, 'list.html')
+    query = request.GET.get('name')
+    message = "El codigo es {}".format(query)
+    template = "list.html"
+    context = {
+        'message': message,
+    }
+    return render(request, template, context)
 
 def about(request):
     return render(request, 'about.html')
 
 def info(request):
-    '''import requests'''
+    query = request.GET.get('name')
+    message = "El codigo es {}".format(query)
+    template = "info.html"
     headers = {
         'api_key': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJndWlsbGVqamhAZ21haWwuY29tIiwianRpIjoiNmZjYjM4OTYtMTdlNi00YzMyLTk0ZTYtZDVjMDA1MzY2NzFiIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE2MTg2NzI4NTEsInVzZXJJZCI6IjZmY2IzODk2LTE3ZTYtNGMzMi05NGU2LWQ1YzAwNTM2NjcxYiIsInJvbGUiOiIifQ.ByKmQAjWDf5lt854PRA8m1hXsdtgiwIwLPNEF6TTNK8'
     }
 
-    url = 'https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/28001'
+    url = 'https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/{}'.format(query)
+
 
     respuesta = requests.get(url, headers=headers)
     respuesta = respuesta.json()
@@ -38,8 +47,13 @@ def info(request):
 
     print(datos[0]["prediccion"]["dia"][1]["probPrecipitacion"])
 
-    diccionario = {'dato1': datos[0]["prediccion"]["dia"][1]["fecha"],
-                   'dato2': datos[0]["prediccion"]["dia"][1]["probPrecipitacion"]}
-    return render(request, 'info.html', context=diccionario)
+    #diccionario = {'dato1': datos[0]["prediccion"]["dia"][1]["fecha"],
+    #               'dato2': datos[0]["prediccion"]["dia"][1]["probPrecipitacion"]}
+    #return render(request, 'info.html', context=diccionario)
 
-    return render(request, 'info.html')
+    context = {
+        'message': message,
+        'datos': datos,
+    }
+
+    return render(request, template, context)
