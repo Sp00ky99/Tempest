@@ -28,32 +28,51 @@ def info(request):
         'api_key': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJndWlsbGVqamhAZ21haWwuY29tIiwianRpIjoiNmZjYjM4OTYtMTdlNi00YzMyLTk0ZTYtZDVjMDA1MzY2NzFiIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE2MTg2NzI4NTEsInVzZXJJZCI6IjZmY2IzODk2LTE3ZTYtNGMzMi05NGU2LWQ1YzAwNTM2NjcxYiIsInJvbGUiOiIifQ.ByKmQAjWDf5lt854PRA8m1hXsdtgiwIwLPNEF6TTNK8'
     }
 
+
+
     url = 'https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/{}'.format(query)
-
-
     respuesta = requests.get(url, headers=headers)
     respuesta = respuesta.json()
-
     datos = requests.get(respuesta["datos"]).json()
 
-    # Todos los datos
-    print(datos)
+    diccionario = {'Nombre': datos[0]["nombre"],
+                   'Temperatura': datos[0]["prediccion"]["dia"][0]["temperatura"]}
 
-    # Prediccion
-    print(datos[0]["prediccion"]["dia"][0])
 
-    # Fecha de la prediccion - Cambiar el 1 para vanzar de dia
-    print(datos[0]["prediccion"]["dia"][3]["fecha"])
 
-    print(datos[0]["prediccion"]["dia"][1]["probPrecipitacion"])
+    url_d = 'https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/{}'.format(query)
+    respuesta_d = requests.get(url_d, headers=headers)
+    respuesta_d = respuesta_d.json()
+    datos_d = requests.get(respuesta_d["datos"]).json()
 
-    #diccionario = {'dato1': datos[0]["prediccion"]["dia"][1]["fecha"],
-    #               'dato2': datos[0]["prediccion"]["dia"][1]["probPrecipitacion"]}
-    #return render(request, 'info.html', context=diccionario)
+    diccionario_d = {'Nombre': datos_d[0]["nombre"],
+                   'Temperatura': datos_d[0]["prediccion"]["dia"][0]["temperatura"],
+                    'Temperatura': datos_d[0]["prediccion"]["dia"][0]["estadoCielo"]}
+
 
     context = {
         'message': message,
         'datos': datos,
+        #'datos_d': datos_d,
+        #'diccionario': diccionario,
+        #'diccionario_d': diccionario_d
+
     }
 
     return render(request, template, context)
+
+
+# Todos los datos
+    #print(datos)
+
+    # Prediccion
+    #print(datos[0]["prediccion"]["dia"][0])
+
+    # Fecha de la prediccion - Cambiar el 1 para vanzar de dia
+    #print(datos[0]["prediccion"]["dia"][3]["fecha"])
+
+    #print(datos[0]["prediccion"]["dia"][1]["probPrecipitacion"])
+
+    #diccionario = {'dato1': datos[0]["prediccion"]["dia"][1]["fecha"],
+    #               'dato2': datos[0]["prediccion"]["dia"][1]["probPrecipitacion"]}
+    #return render(request, 'info.html', context=diccionario)
