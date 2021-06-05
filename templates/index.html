@@ -2,6 +2,24 @@
 {% block title %} Tempest 1.0 - Index {% endblock %}
 {% block content %}
 
-    <h1>INDEX</h1>
+    <div class="div_c">
+        <h1 style="color:White";>TEMPEST</h1>
+        <h5 style="color:White";>APP Meteoroógica para la Comunidad de Madrid</h5>
+        <a class="nav-link active" aria-current="page" href="{% url 'about' %}">Acerca de</a>
+    </div>
+
+<style>
+.div_c {
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 5px;
+        padding: 10px;
+}
+
+</style>
+
 
 {% endblock %}
