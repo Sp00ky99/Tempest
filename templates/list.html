@@ -2,7 +2,139 @@
 {% block title %} Tempest 1.0 - List {% endblock %}
 {% block content %}
 
-    <h1>LIST</h1>
+
+  <!--
+   <div class="div_c">
+   
+       <input type="text">
+
+       <p>-</p>
+
+        <table class="tab">
+            {% for i in municipios %}
+                <tr>
+                    <td><a href="info?name={{ i.id }}" class="links">{{ i.nombre }}</a></td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    -->
+    
+<div class="div_c">
+   
+    <h2 class="links">Busca un municipio</h2> 
+    <form>
+        <input id="searchTerm" type="text" onkeyup="doSearch()" />
+    </form>
+    
+    <p>-</p>
+    
+    <p>
+        <table id="datos" class="tab">
+            {% for i in municipios %}
+               <tr></tr>
+                <tr>
+                    <td><a href="info?name={{ i.id }}" class="links">{{ i.nombre }}</a></td>
+                </tr>
+            {% endfor %}
+            <tr class='noSearch hide'>
+                
+            </tr>
+        </table>
+    </p>
+    </div>
+    
+
+    
+    
+    
+    <script language="javascript">
+        /*Buscador de municipios*/
+        function doSearch()
+        {
+            const tableReg = document.getElementById('datos');
+            const searchText = document.getElementById('searchTerm').value.toLowerCase();
+            let total = 0;
+ 
+            // Recorremos todas las filas con contenido de la tabla
+            for (let i = 1; i < tableReg.rows.length; i++) {
+                // Si el td tiene la clase "noSearch" no se busca en su cntenido
+                if (tableReg.rows[i].classList.contains("noSearch")) {
+                    continue;
+                }
+ 
+                let found = false;
+                const cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+                // Recorremos todas las celdas
+                for (let j = 0; j < cellsOfRow.length && !found; j++) {
+                    const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                    // Buscamos el texto en el contenido de la celda
+                    if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
+                        found = true;
+                        total++;
+                    }
+                }
+                if (found) {
+                    tableReg.rows[i].style.display = '';
+                } else {
+                    // si no ha encontrado ninguna coincidencia, esconde la
+                    // fila de la tabla
+                    tableReg.rows[i].style.display = 'none';
+                }
+            }
+ 
+            // mostramos las coincidencias
+            const lastTR=tableReg.rows[tableReg.rows.length-1];
+            const td=lastTR.querySelector("td");
+            lastTR.classList.remove("hide", "red");
+            if (searchText == "") {
+                lastTR.classList.add("hide");
+                /*
+            } else if (total) {
+                td.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
+            } else {
+                lastTR.classList.add("red");
+                td.innerHTML="No se han encontrado coincidencias";*/
+            }
+        }
+    </script>
+    
+    
+    
+    
+    <style>
+    .div_c {
+        margin: auto;
+        width: 50%;
+        border: 3px;
+        padding: 30px;
+       
+        text-align: center;
+        width: 60%;
+        
+        }
+        
+        .links{
+            text-decoration: none;
+            color: white;
+            text-align: center;
+        }
+        
+        .tab{
+            background-color: #212529;
+            width: 100%;
+            
+            
+        }
+
+        /* Buscador */
+        #datos td {padding:5px;}
+        #datos tr.noSearch {background:White;font-size:0.8em;}
+        #datos tr.noSearch td {padding-top:10px;text-align:right;}
+        .hide {display:none;}
+        .red {color:Red;}
+    </style>
 
 
 {% endblock %}

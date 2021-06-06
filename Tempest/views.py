@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import requests
+from BaseMunicipios.models import municipios
 
 def index(request):
     return render(request, 'index.html')
@@ -9,13 +10,16 @@ def map(request):
     return render(request, 'map.html')
 
 def list(request):
-    query = request.GET.get('name')
+    '''query = request.GET.get('name')
     message = "El codigo es {}".format(query)
     template = "list.html"
+    '''
     context = {
-        'message': message,
+        #'message': message,
+        'municipios': municipios.objects.all().order_by('nombre')
     }
-    return render(request, template, context)
+    print(context)
+    return render(request, 'list.html', context)
 
 def about(request):
     return render(request, 'about.html')
@@ -40,22 +44,14 @@ def info(request):
 
 
 
-    url_d = 'https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/{}'.format(query)
-    respuesta_d = requests.get(url_d, headers=headers)
-    respuesta_d = respuesta_d.json()
-    datos_d = requests.get(respuesta_d["datos"]).json()
-
-    diccionario_d = {'Nombre': datos_d[0]["nombre"],
-                   'Temperatura': datos_d[0]["prediccion"]["dia"][0]["temperatura"],
-                    'Temperatura': datos_d[0]["prediccion"]["dia"][0]["estadoCielo"]}
 
 
     context = {
         'message': message,
         'datos': datos,
-        #'datos_d': datos_d,
-        #'diccionario': diccionario,
-        #'diccionario_d': diccionario_d
+        'datos': datos,
+        'diccionario': diccionario,
+
 
     }
 

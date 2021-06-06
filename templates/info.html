@@ -2,17 +2,42 @@
 {% block title %} Tempest 1.0 - Info {% endblock %}
 {% block content %}
 
+    <!-- <div>
+        <p style="color:white";>{{ diccionario_d.Nombre }}</p>  <br>
+
+          <br>
+        {% for i in diccionario_d.Temperatura %}
+            <p style="color:white";>Hora: {{ i.periodo }}</p>
+            <p style="color:white";>Temperatura: {{ i.value }}</p>
+            <p style="color:white";>Estado: {{ i.descripcion }}</p>
+        {% endfor %}
+    </div> -->
+
+<!--<p style="color:white";>{{ datos }}</p>  <br>-->
+<!--<p style="color:white";>Diccionario: {{ diccionario }}</p>-->
+
     <div>
+        <p style="color:white";>{{ diccionario.Nombre }}</p>  <br>
 
-    <h1 style="color:white";>INFO</h1>
-    <p style="color:white";>{{message}}</p>  <br>
-    <p style="color:white";>{{datos}}</p>  <br>
-    <p style="color:white";>{{diccionario}}</p>  <br>
-    <p style="color:white";>{{datos_d}}</p>  <br>
-    <p style="color:white";>{{diccionario_d}}</p>  <br>
-    <p style="color:white";>{{datos_m}}</p>  <br>
-    <p style="color:white";>{{diccionario_m}}</p>  <br>
-
+          <br>
+        {% for i in diccionario.Temperatura.dato %}
+            <p style="color:white";>Temperatura: {{ i.value }}</p>
+            <p style="color:white";>Hora: {{ i.hora }}</p>
+        {% endfor %}
     </div>
+
+    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.3.periodo }}</p>
+    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.3.value }}</p>
+
+    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.4.periodo }}</p>
+    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.4.value }}</p>
+
+    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.5.periodo }}</p>
+    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.5.value }}</p>
+
+    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.6.periodo }}</p>
+    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.6.value }}</p>
+
+
 
 {% endblock %}
