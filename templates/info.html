@@ -2,42 +2,237 @@
 {% block title %} Tempest 1.0 - Info {% endblock %}
 {% block content %}
 
-    <!-- <div>
-        <p style="color:white";>{{ diccionario_d.Nombre }}</p>  <br>
+<div class="container">
 
-          <br>
-        {% for i in diccionario_d.Temperatura %}
-            <p style="color:white";>Hora: {{ i.periodo }}</p>
-            <p style="color:white";>Temperatura: {{ i.value }}</p>
-            <p style="color:white";>Estado: {{ i.descripcion }}</p>
-        {% endfor %}
-    </div> -->
+    <div class="col-12 justify-content-center">
+       <br>
+       <h4 style="color:white"; class="texto">{{ diccionario.Nombre }}</h4>
 
-<!--<p style="color:white";>{{ datos }}</p>  <br>-->
-<!--<p style="color:white";>Diccionario: {{ diccionario }}</p>-->
+       <h5 style="color:white"; class="texto">Hoy</h5> <br>
 
-    <div>
-        <p style="color:white";>{{ diccionario.Nombre }}</p>  <br>
+       <table class="tab" border="1px">
+           
+            <tr>
+                <td colspan="4">
+                    <p> <br> Estado cielo <i class="fa fa-sun-o" aria-hidden="true"></i></p>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>0-6H</td>
+                <td>6-12H</td>
+                <td>12-18H</td>
+                <td>18-24H</td>
+            </tr>
+            <tr>
+                <td><p>{{ datos.0.prediccion.dia.0.estadoCielo.3.descripcion}}</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.estadoCielo.4.descripcion}}</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.estadoCielo.5.descripcion}}</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.estadoCielo.6.descripcion}}</p></td>
+            </tr>
 
-          <br>
-        {% for i in diccionario.Temperatura.dato %}
-            <p style="color:white";>Temperatura: {{ i.value }}</p>
-            <p style="color:white";>Hora: {{ i.hora }}</p>
-        {% endfor %}
+           <tr>
+
+
+           </tr>
+
+        </table>
+    
+        <table class="tab" border="1px">
+           
+            <tr>
+                <td colspan="4">
+                    <p> <br> Temperaturas <i class="fa fa-thermometer-half" aria-hidden="true"></i></p>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>0-6H</td>
+                <td>6-12H</td>
+                <td>12-18H</td>
+                <td>18-24H</td>
+            </tr>
+            <tr>
+                <td><p>{{ datos.0.prediccion.dia.0.temperatura.dato.0.value}} ºC</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.temperatura.dato.1.value}} ºC</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.temperatura.dato.2.value}} ºC</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.temperatura.dato.3.value}} ºC</p></td>
+            </tr>
+        </table>
+        
+        <table class="tab" border="1px">
+           
+            <tr>
+                <td colspan="4">
+                    <p> <br> Porbabilidad de precipitaciones <i class="fa fa-cloud" aria-hidden="true"></i></p>
+                </td>
+            </tr>
+            
+            <tr>
+                <td> 0-6H </td>
+                <td> 6-12H </td>
+                <td> 12-18H </td>
+                <td> 18-24H </td>
+            </tr>
+            <tr>
+                <td><p>{{ datos.0.prediccion.dia.0.probPrecipitacion.3.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.probPrecipitacion.4.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.probPrecipitacion.5.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.probPrecipitacion.6.value }} %</p></td>
+            </tr>
+        </table>
+
+
+        <table class="tab" border="1px">
+
+            <tr>
+                <td colspan="4">
+                    <p> <br> Humedad relativa <i class="fa fa-tint" aria-hidden="true"></i></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>0-6H</td>
+                <td>6-12H</td>
+                <td>12-18H</td>
+                <td>18-24H</td>
+            </tr>
+            <tr>
+                <td><p>{{ datos.0.prediccion.dia.0.humedadRelativa.dato.0.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.humedadRelativa.dato.1.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.humedadRelativa.dato.2.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.0.humedadRelativa.dato.3.value }} %</p></td>
+            </tr>
+        </table>
+        
+        
+        <br>
+        <h5 style="color:white"; class="texto">Mañana</h5> <br>
+
+       <table class="tab" border="1px">
+           
+            <tr>
+                <td colspan="4">
+                    <p> <br> Estado cielo <i class="fa fa-sun-o" aria-hidden="true"></i></p>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>0-6H</td>
+                <td>6-12H</td>
+                <td>12-18H</td>
+                <td>18-24H</td>
+            </tr>
+            <tr>
+                <td><p>{{ datos.0.prediccion.dia.1.estadoCielo.3.descripcion}}</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.estadoCielo.4.descripcion}}</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.estadoCielo.5.descripcion}}</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.estadoCielo.6.descripcion}}</p></td>
+            </tr>
+
+           <tr>
+
+
+           </tr>
+
+        </table>
+        
+        
+        
+       
+        <table class="tab" border="1px">
+           
+            <tr>
+                <td colspan="4">
+                    <p> <br> Temperaturas <i class="fa fa-thermometer-half" aria-hidden="true"></i></p>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>0-6H</td>
+                <td>6-12H</td>
+                <td>12-18H</td>
+                <td>18-24H</td>
+            </tr>
+            <tr>
+                <td><p>{{ datos.0.prediccion.dia.1.temperatura.dato.0.value}} ºC</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.temperatura.dato.1.value}} ºC</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.temperatura.dato.2.value}} ºC</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.temperatura.dato.3.value}} ºC</p></td>
+            </tr>
+        </table>
+        
+        <table class="tab" border="1px">
+           
+            <tr>
+                <td colspan="4">
+                    <p> <br> Porbabilidad de precipitaciones <i class="fa fa-cloud" aria-hidden="true"></i></p>
+                </td>
+            </tr>
+            
+            <tr>
+                <td> 0-6H </td>
+                <td> 6-12H </td>
+                <td> 12-18H </td>
+                <td> 18-24H </td>
+            </tr>
+            <tr>
+                <td><p>{{ datos.0.prediccion.dia.1.probPrecipitacion.3.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.probPrecipitacion.4.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.probPrecipitacion.5.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.probPrecipitacion.6.value }} %</p></td>
+            </tr>
+        </table>
+
+
+        <table class="tab" border="1px">
+
+            <tr>
+                <td colspan="4">
+                    <p> <br> Humedad relativa <i class="fa fa-tint" aria-hidden="true"></i></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>0-6H</td>
+                <td>6-12H</td>
+                <td>12-18H</td>
+                <td>18-24H</td>
+            </tr>
+            <tr>
+                <td><p>{{ datos.0.prediccion.dia.1.humedadRelativa.dato.0.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.humedadRelativa.dato.1.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.humedadRelativa.dato.2.value }} %</p></td>
+                <td><p>{{ datos.0.prediccion.dia.1.humedadRelativa.dato.3.value }} %</p></td>
+            </tr>
+        </table>
+        
+        
+        
+
     </div>
 
-    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.3.periodo }}</p>
-    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.3.value }}</p>
+    </div>
 
-    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.4.periodo }}</p>
-    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.4.value }}</p>
+        <style>
 
-    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.5.periodo }}</p>
-    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.5.value }}</p>
+        .texto {
+        
+        text-align: center;
 
-    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.6.periodo }}</p>
-    <p style="color:white";>{{ datos.0.prediccion.dia.0.probPrecipitacion.6.value }}</p>
+        }
 
+            .tab{
+                color: white;
+                border: 1px solid white;
+                width: 100%;
+                text-align: center;
+
+            
+        }
+
+
+        </style>
 
 
 {% endblock %}
