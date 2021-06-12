@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 import requests
 from BaseMunicipios.models import municipios
 
@@ -14,7 +13,6 @@ def list(request):
         'municipios': municipios.objects.all().order_by('nombre')
     }
 
-    #print(context)
     return render(request, 'list.html', context)
 
 def about(request):
@@ -41,8 +39,6 @@ def info(request):
         'datos': datos,
         'datos': datos,
         'diccionario': diccionario,
-
-
     }
 
     return render(request, template, context)
